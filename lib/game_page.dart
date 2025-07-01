@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:zugclient_template/game_client.dart';
+
+import 'game_model.dart';
 
 class GamePage extends StatefulWidget {
 
-  final GameClient client;
-  const GamePage(this.client, {super.key});
+  final GameModel model;
+  const GamePage(this.model, {super.key});
 
   @override
   State<StatefulWidget> createState() => _MainPageState();

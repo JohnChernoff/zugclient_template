@@ -1,10 +1,10 @@
-import 'package:zugclient/zug_client.dart';
-import 'game_client.dart';
+import 'package:zugclient/zug_area.dart';
+import 'game_model.dart';
 
 class Game extends Area {
   Game(super.data);
 
-  void update(dynamic data,GameClient? client) {
+  void update(dynamic data,GameModel? client) {
     //TODO: add stuff here
   }
 

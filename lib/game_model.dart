@@ -1,36 +1,35 @@
-import 'package:zugclient/zug_client.dart';
+import 'package:zugclient/zug_area.dart';
+import 'package:zugclient/zug_model.dart';
 import 'game.dart';
 
 enum GameMsg { gameWin, gameLose, top, scoreRank }
 
-class GameClient extends ZugClient {
+class GameModel extends ZugModel {
 
   Game get currentGame => currentArea as Game;
 
-  GameClient(super.domain, super.port, super.remoteEndpoint, super.prefs, {super.localServer}) {
+  Game getGame(data) => getOrCreateArea(data) as Game;
+
+  GameModel(super.domain, super.port, super.remoteEndpoint, super.prefs, {super.localServer,super.showServMess,super.javalinServer}) {
     showServMess = true;
-    clientName = "my_client";
+    modelName = "my_client";
     addFunctions({
       GameMsg.gameWin: handleVictory,
       GameMsg.gameLose: handleDefeat,
       GameMsg.top: handleTop,
       GameMsg.scoreRank: handleScoreRank,
     });
-    if (prefs?.getBool(AudioType.sound.name) == null) {
-      prefs?.setBool(AudioType.sound.name, true);
-    }
+    editOption(AudioOpt.music, true);
     checkRedirect("lichess.org");
   }
 
   Future<void> handleVictory(data) async {
-    handleUpdateArea(data);
-    playClip("victory");
+    handleUpdateArea(data); //playClip("victory");
 
   }
 
   Future<void> handleDefeat(data) async {
-    handleUpdateArea(data);
-    playClip("defeat");
+    handleUpdateArea(data); //playClip("defeat");
   }
 
   void handleTop(data) {
