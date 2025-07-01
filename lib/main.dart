@@ -24,7 +24,7 @@ void main() {
 }
 
 class GameApp extends ZugApp {
-  GameApp(super.client, super.appName,
+  GameApp(super.model, super.appName,
       {super.key, super.logLevel = Level.INFO, super.noNav = true});
 
   @override
