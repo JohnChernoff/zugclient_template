@@ -7,12 +7,10 @@ import 'package:zugclient/zug_model.dart';
 import 'game_model.dart';
 import 'game_page.dart';
 
-//TODO: game timer is a bit annoying
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  String appName = "Roshambo 9000";
-  ZugUtils.getIniDefaults("chuck.ini").then((defaults) {
+  String appName = "Template ZugClient";
+  ZugUtils.getIniDefaults("temp.ini").then((defaults) {
     ZugUtils.getPrefs().then((prefs) {
       String domain = defaults["domain"] ?? "localhost";
       int port = int.parse(defaults["port"] ?? "4444");
