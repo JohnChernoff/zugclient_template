@@ -8,4 +8,9 @@ class Game extends Area {
     //TODO: add stuff here
   }
 
+  @override
+  List<Enum> getPhases() {
+    return ZugPhase.values;
+  }
+
 }
