@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:zug_utils/zug_utils.dart';
+import 'package:zugclient/lobby_page.dart';
 import 'package:zugclient/zug_app.dart';
 import 'package:zugclient/zug_model.dart';
 import 'game_model.dart';
@@ -10,7 +11,7 @@ import 'game_page.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   String appName = "Template ZugClient";
-  ZugUtils.getIniDefaults("temp.ini").then((defaults) {
+  ZugUtils.getIniDefaults("defaults.ini").then((defaults) {
     ZugUtils.getPrefs().then((prefs) {
       String domain = defaults["domain"] ?? "localhost";
       int port = int.parse(defaults["port"] ?? "4444");
@@ -25,21 +26,12 @@ void main() {
 
 class GameApp extends ZugApp {
   GameApp(super.model, super.appName,
-      {super.key, super.logLevel = Level.INFO, super.noNav = true});
+      {super.key, super.logLevel = Level.INFO, super.noNav = false, super.isDark = true});
 
   @override
-  AppBar createAppBar(BuildContext context, ZugModel model,
-      {Widget? txt, Color? color}) {
-    return AppBar(
-      backgroundColor: Colors.black,
-      title: Text(
-          "Welcome to $appName, ${model.userName?.name ?? "Unknown User"}! ",
-          style: const TextStyle(color: Colors.white)),
-    );
-  }
+  Widget createLobbyPage(ZugModel model) => LobbyPage(model);
 
   @override
-  Widget createMainPage(model) {
-    return GamePage(model as GameModel);
-  }
+  Widget createMainPage(model) => GamePage(model as GameModel);
+
 }
