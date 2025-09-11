@@ -18,7 +18,9 @@ void main() {
       String endPoint = defaults["endpoint"] ?? "ws";
       bool localServer = bool.parse(defaults["localServer"] ?? "true");
       log("Starting $appName Client, domain: $domain, port: $port, endpoint: $endPoint, localServer: $localServer");
-      GameModel model = GameModel(domain,port,endPoint,prefs,localServer : localServer,showServMess : false, javalinServer: true);
+      GameModel model = GameModel(domain,port,endPoint,prefs,
+          //firebaseOptions: DefaultFirebaseOptions.web, //to enable, run 'flutterfire configure'
+          localServer : localServer,showServMess : false, javalinServer: true);
       runApp(GameApp(model,appName));
     });
   });
